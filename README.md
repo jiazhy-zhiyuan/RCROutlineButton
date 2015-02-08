@@ -17,10 +17,6 @@ TODO
 
 A sample project containing examples of buttons can be found in the `RCROutlineButtonSample` folder.
 
-## API Docs
-
-TODO
-
 ## License
 
 MIT License (see `LICENSE` in the root of the repository).
