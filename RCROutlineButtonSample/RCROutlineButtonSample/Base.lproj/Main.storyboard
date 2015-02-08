@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -13,50 +14,63 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGp-wc-kqI" customClass="RCROutlineButton">
-                                <rect key="frame" x="210" y="284" width="180" height="32"/>
+                                <rect key="frame" x="70" y="196" width="180" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="pyG-vY-BmF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Green Outline Button">
                                     <color key="titleColor" red="0.19607843137254902" green="0.78431372549019607" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASt-51-XgS" customClass="RCROutlineButton">
-                                <rect key="frame" x="210" y="346" width="180" height="32"/>
+                                <rect key="frame" x="70" y="255" width="180" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="I6n-Bn-vjV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Blue Outline Button">
                                     <color key="titleColor" red="0.19607843137254902" green="0.19607843137254902" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PKK-Nj-aQa" customClass="RCROutlineButton">
-                                <rect key="frame" x="210" y="222" width="180" height="32"/>
+                                <rect key="frame" x="70" y="137" width="180" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="xtI-Ac-0EP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Red Outline Button">
                                     <color key="titleColor" red="0.82352941176470584" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaf-Ry-PIO" customClass="RCROutlineButton">
+                                <rect key="frame" x="70" y="314" width="180" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="noE-7H-TvF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Disabled Outline Button">
+                                    <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ASt-51-XgS" firstAttribute="top" secondItem="iGp-wc-kqI" secondAttribute="bottom" constant="30" id="HCc-ov-jGX"/>
+                            <constraint firstItem="oaf-Ry-PIO" firstAttribute="top" secondItem="ASt-51-XgS" secondAttribute="bottom" constant="30" id="Lfg-18-VFf"/>
                             <constraint firstItem="iGp-wc-kqI" firstAttribute="top" secondItem="PKK-Nj-aQa" secondAttribute="bottom" constant="30" id="S5i-VC-YYm"/>
                             <constraint firstAttribute="centerX" secondItem="ASt-51-XgS" secondAttribute="centerX" id="VBM-32-BKE"/>
-                            <constraint firstAttribute="centerY" secondItem="iGp-wc-kqI" secondAttribute="centerY" id="YnN-BY-yeU"/>
+                            <constraint firstAttribute="centerY" secondItem="iGp-wc-kqI" secondAttribute="centerY" constant="30" id="YnN-BY-yeU"/>
                             <constraint firstAttribute="centerX" secondItem="PKK-Nj-aQa" secondAttribute="centerX" id="kVM-K0-xtK"/>
+                            <constraint firstAttribute="centerX" secondItem="oaf-Ry-PIO" secondAttribute="centerX" id="zPP-I5-fSy"/>
                             <constraint firstAttribute="centerX" secondItem="iGp-wc-kqI" secondAttribute="centerX" id="zUR-IG-OEo"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
