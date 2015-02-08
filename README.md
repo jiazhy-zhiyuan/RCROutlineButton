@@ -1,9 +1,9 @@
 RCROutlineButton
 ================
 
-![Sample app screenshot](./screenshot.png)
-
 An iOS `UIButton` subclass with an outline border whose colour matches that of the title label.
+
+![Sample app screenshot](./screenshot.png)
 
 ## What it Depends on
 
