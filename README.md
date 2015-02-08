@@ -13,7 +13,9 @@ All code uses ARC.
 
 The simplest way to use `RCROutlineButton` is with Interface Builder.
 
-Drag a regular `UIButton` out into your view and then, using the Identity Inspector, set the button’s class to be `RCROutlineButton`.
+First, drag a regular `UIButton` out into your view. Then, using the Identity Inspector, set the button’s class to be `RCROutlineButton`. Finally, using the Attributes Inspector, change the type of the button to be ‘Custom’.
+
+You can then customize the button’s font and text colour as usual. The button’s outline border will be the same colour as the text.
 
 If you want to customize the button’s corner radius and border width, you can do this using the corresponding fields in the Outline Button section of the Attributes Inspector.
 
