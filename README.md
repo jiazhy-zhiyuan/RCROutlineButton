@@ -1,7 +1,7 @@
 RCROutlineButton
 ================
 
-A UIButton subclass with an outline border whose colour matches that of the title label.
+An iOS UIButton subclass with an outline border whose colour matches that of the title label.
 
 ## What it Depends on
 
