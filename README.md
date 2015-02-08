@@ -5,7 +5,7 @@ A UIButton subclass with an outline border whose colour matches that of the titl
 
 ## What it Depends on
 
-`RCROutlineButton` has been verified as working with Xcode 6.1, iOS 7 and iOS 8.
+`RCROutlineButton` has been verified as working with Xcode 6.1, iOS 7.1 and iOS 8.1.
 
 All code uses ARC.
 
