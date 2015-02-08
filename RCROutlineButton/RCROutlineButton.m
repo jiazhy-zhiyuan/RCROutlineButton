@@ -8,8 +8,8 @@
 #import "RCROutlineButton.h"
 
 
-CGFloat const CornerRadius = 5.0f;
-CGFloat const BorderWidth = 1.5f;
+CGFloat const DefaultCornerRadius = 5.0f;
+CGFloat const DefaultBorderWidth = 1.5f;
 CGFloat const HighlightBrightnessFactor = 0.5f;
 CGFloat const DisabledAlpha = 0.5f;
 
@@ -24,6 +24,8 @@ CGFloat const DisabledAlpha = 0.5f;
 
 
 @implementation RCROutlineButton
+
+#pragma mark - Initialization
 
 // Cater for initialization via code
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -52,17 +54,37 @@ CGFloat const DisabledAlpha = 0.5f;
     _highlightedColor = [self makeHighlightedColor];
     _disabledColor = [self makeDisabledColor];
     
-    self.layer.cornerRadius = CornerRadius;
+    self.layer.cornerRadius = DefaultCornerRadius;
     self.clipsToBounds = YES;
-    self.layer.borderWidth = BorderWidth;
+    self.layer.borderWidth = DefaultBorderWidth;
     
-    [self updateToColor:self.enabledColor];
+    [self updateToColor:self.normalColor];
 }
+
+#pragma mark - Getter and setter methods for our IBInspectable properties
+
+- (CGFloat)cornerRadius {
+    return self.layer.cornerRadius;
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    self.layer.cornerRadius = cornerRadius;
+}
+
+- (CGFloat)borderWidth {
+    return self.layer.borderWidth;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth {
+    self.layer.borderWidth = borderWidth;
+}
+
+#pragma mark - Overridden UIControl methods
 
 - (void)setEnabled:(BOOL)enabled {
     [super setEnabled:enabled];
  
-    [self updateToColor:self.enabledColor];
+    [self updateToColor:self.normalColor];
 }
 
 - (void)setHighlighted:(BOOL)highlighted {
@@ -72,9 +94,11 @@ CGFloat const DisabledAlpha = 0.5f;
         [self updateToColor:self.highlightedColor];
     }
     else {
-        [self updateToColor:self.enabledColor];
+        [self updateToColor:self.normalColor];
     }
 }
+
+#pragma mark - Methods for dealing with color
 
 - (void)updateToColor:(UIColor *)color {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -86,7 +110,7 @@ CGFloat const DisabledAlpha = 0.5f;
     });
 }
 
-- (UIColor *)enabledColor {
+- (UIColor *)normalColor {
     return self.isEnabled ? self.primaryColor : self.disabledColor;
 }
 
