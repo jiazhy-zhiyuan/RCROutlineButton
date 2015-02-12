@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "RCROutlineButton"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "An iOS UIButton subclass with an outline border whose colour matches that of the title label."
   s.homepage         = "https://github.com/robinsonrc/RCROutlineButton"
   s.license          = { :type => 'MIT', :file => 'LICENSE'  }
