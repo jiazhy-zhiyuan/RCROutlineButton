@@ -13,16 +13,6 @@ CGFloat const DefaultBorderWidth = 1.5f;
 CGFloat const HighlightBrightnessFactor = 0.5f;
 CGFloat const DisabledAlpha = 0.5f;
 
-
-@interface RCROutlineButton ()
-
-@property (nonatomic, strong) UIColor *primaryColor;
-@property (nonatomic, strong) UIColor *highlightedColor;
-@property (nonatomic, strong) UIColor *disabledColor;
-
-@end
-
-
 @implementation RCROutlineButton
 
 #pragma mark - Initialization
@@ -50,15 +40,12 @@ CGFloat const DisabledAlpha = 0.5f;
 }
 
 - (void)setup {
-    _primaryColor = self.titleLabel.textColor;
-    _highlightedColor = [self makeHighlightedColor];
-    _disabledColor = [self makeDisabledColor];
-    
-    self.layer.cornerRadius = DefaultCornerRadius;
     self.clipsToBounds = YES;
+    self.layer.cornerRadius = DefaultCornerRadius;
     self.layer.borderWidth = DefaultBorderWidth;
     
-    [self updateToColor:self.normalColor];
+    [self automaticallySetHighlightedAndDisabledTitleColors];
+    [self updateBorderColorToMatchTitleLabel];
 }
 
 #pragma mark - Getter and setter methods for our IBInspectable properties
@@ -79,62 +66,63 @@ CGFloat const DisabledAlpha = 0.5f;
     self.layer.borderWidth = borderWidth;
 }
 
-#pragma mark - Overridden UIControl methods
+#pragma mark - Overridden UIButton methods
 
-- (void)setEnabled:(BOOL)enabled {
-    [super setEnabled:enabled];
- 
-    [self updateToColor:self.normalColor];
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
+    [super setTitleColor:color forState:state];
+    
+    if (state == UIControlStateNormal) {
+        [self automaticallySetHighlightedAndDisabledTitleColors];
+    }
 }
+
+#pragma mark - Overridden UIControl methods
 
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
     
-    if (highlighted) {
-        [self updateToColor:self.highlightedColor];
-    }
-    else {
-        [self updateToColor:self.normalColor];
-    }
+    [self updateBorderColorToMatchTitleLabel];
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
+    
+    [self updateBorderColorToMatchTitleLabel];
 }
 
 #pragma mark - Methods for dealing with color
 
-- (void)updateToColor:(UIColor *)color {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // We set the color in two ways, which seems to get things behaving as we want for both iOS 7 and iOS 8
-        self.titleLabel.textColor = color;
-        [self setTitleColor:color forState:UIControlStateNormal];
-        
-        self.layer.borderColor = color.CGColor;
-    });
+- (void)automaticallySetHighlightedAndDisabledTitleColors {
+    [self setTitleColor:[self makeHighlightedColor] forState:UIControlStateHighlighted];
+    [self setTitleColor:[self makeDisabledColor] forState:UIControlStateDisabled];
 }
 
-- (UIColor *)normalColor {
-    return self.isEnabled ? self.primaryColor : self.disabledColor;
+- (void)updateBorderColorToMatchTitleLabel {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.layer.borderColor = self.titleLabel.textColor.CGColor;
+    });
 }
 
 - (UIColor *)makeHighlightedColor {
     CGFloat red;
     CGFloat green;
     CGFloat blue;
+
+    [[self titleColorForState:UIControlStateNormal] getRed:&red green:&green blue:&blue alpha:NULL];
     
-    [_primaryColor getRed:&red green:&green blue:&blue alpha:NULL];
+    CGFloat highlightRed = red*HighlightBrightnessFactor;
+    CGFloat highlightGreen = green*HighlightBrightnessFactor;
+    CGFloat highlightBlue = blue*HighlightBrightnessFactor;
     
-    red *= HighlightBrightnessFactor;
-    green *= HighlightBrightnessFactor;
-    blue *= HighlightBrightnessFactor;
-    
-    return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+    return [UIColor colorWithRed:highlightRed green:highlightGreen blue:highlightBlue alpha:1.0];
 }
 
 - (UIColor *)makeDisabledColor {
     CGFloat red;
     CGFloat green;
     CGFloat blue;
-    CGFloat oldAlpha;
     
-    [_primaryColor getRed:&red green:&green blue:&blue alpha:&oldAlpha];
+    [[self titleColorForState:UIControlStateNormal] getRed:&red green:&green blue:&blue alpha:NULL];
     
     return [UIColor colorWithRed:red green:green blue:blue alpha:DisabledAlpha];
 }
